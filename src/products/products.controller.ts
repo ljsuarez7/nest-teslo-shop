@@ -6,12 +6,28 @@ import { PaginationDto } from 'src/common/dtos/pagination.dto';
 import { Auth, GetUser } from '../auth/decorators';
 import { ValidRoles } from '../auth/interfaces';
 import { User } from 'src/auth/entities/user.entity';
+import { ApiResponse, ApiTags } from '@nestjs/swagger';
+import { Product } from './entities';
 
+/* TODO: Revisar documentación de swagger para mejorar la documentación de la api
+/* https://docs.nestjs.com/openapi/introduction */
+
+@ApiTags('Products')
 @Controller('products')
 //@Auth() //Si definimos aqui el decorador de autenticacion quiere decir q para cualquier ruta de productos debe cumplir con los roles q pongamos y la autentiacion
 export class ProductsController {
   constructor(private readonly productsService: ProductsService) {}
 
+  @ApiResponse({
+    status: 201, description: 'Product was created',
+    type: Product
+  })
+  @ApiResponse({
+    status: 400, description: 'Bad request',
+  })
+  @ApiResponse({
+    status: 403, description: 'Forbidden. Token related',
+  })
   //Si definimos aqui el decorador solo protege esta ruta concreta
   @Post()
   @Auth() 

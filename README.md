@@ -4,6 +4,8 @@
 
 # Teslo API
 
+Documentación de la API en http://localhost:4000/api/
+
 1. Clonar proyecto
 2. Instalar
 ```
@@ -21,6 +23,6 @@ yarn start:dev
 ``` 
 7. Ejecutar SEED
 ```
-http://localhost:3000/api/seed
+http://localhost:4000/api/seed
 ```
 # nest-teslo-shop
